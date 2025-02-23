@@ -16,6 +16,7 @@ go-telnet
 *.out
 
 ### User defined
+main.go
 .idea/
 .DS_Store
 .DS_Store?
