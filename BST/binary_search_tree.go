@@ -1,4 +1,4 @@
-package BST
+package bst
 
 import "fmt"
 
@@ -8,7 +8,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// Insert new value in tree
 func (n *TreeNode) Insert(value int) {
 	if value < n.Value {
 		if n.Left == nil {
@@ -25,7 +24,6 @@ func (n *TreeNode) Insert(value int) {
 	}
 }
 
-// Search value in tree
 func (n *TreeNode) Search(value int) bool {
 	if n == nil {
 		return false
@@ -33,19 +31,21 @@ func (n *TreeNode) Search(value int) bool {
 	if n.Value == value {
 		return true
 	} else if value < n.Value {
-		return n.Left.Search(value)
+		return n.Left != nil && n.Left.Search(value)
 	} else {
-		return n.Right.Search(value)
+		return n.Right != nil && n.Right.Search(value)
 	}
 }
 
-// Recursive tree traversal in LNR order
-// Good for sorted value from tree
 func (n *TreeNode) InOrderTraversal() {
 	if n == nil {
 		return
 	}
-	n.Left.InOrderTraversal()
+	if n.Left != nil {
+		n.Left.InOrderTraversal()
+	}
 	fmt.Printf("%d ", n.Value)
-	n.Right.InOrderTraversal()
+	if n.Right != nil {
+		n.Right.InOrderTraversal()
+	}
 }
